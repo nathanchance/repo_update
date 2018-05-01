@@ -102,3 +102,11 @@ LINK=$HTTP && LINK+="://android.googlesource.com/platform/system/nfc"
 git fetch $LINK refs/changes/17/515517/10 && git cherry-pick FETCH_HEAD
 git fetch $LINK refs/changes/15/533315/4 && git cherry-pick FETCH_HEAD
 popd
+
+if [ "$UPDATE_CLANG" = "TRUE" ]; then
+    pushd $ANDROOT/prebuilts/clang/host/linux-x86
+    LINK=$HTTP && LINK+="://android.googlesource.com/platform/prebuilts/clang/host/linux-x86"
+    git fetch --unshallow $LINK refs/changes/79/653879/2 && git cherry-pick FETCH_HEAD
+    git fetch --unshallow $LINK refs/changes/30/675130/1 && git cherry-pick FETCH_HEAD
+    popd
+fi
